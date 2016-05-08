@@ -1,0 +1,87 @@
+/* ----------  GENERAL STYLES --------------*/
+
+body{
+    font-family: Arial, Sans-Serif;
+    font-size: 100%;
+}
+
+header{
+    padding: 30px 0;
+    background-color: green;
+}
+
+.container{
+    margin: 0 auto;
+    width: 800px;
+}
+
+dl{
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* ----------  NAVIGATION SECTION --------------*/
+
+.navigation{
+    background-color: darkgray;
+    border-color: #101010;
+    min-height: 48px;
+}
+
+.navigation li {
+    float: left;
+    width: 200px
+}
+
+.navigation a{
+    display: block;
+    color: black;
+    line-height: 3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+.active-item,
+.navigation li a:hover {
+    color: yellowgreen;
+    background-color: #666666;
+}
+
+table{
+    width: 100%;
+    table-layout: fixed;
+    background-color: lavender;
+    border-collapse: collapse;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+th{
+    height: 50px;
+}
+th, td{
+    border: 2px solid white;
+    word-wrap:break-word;
+}
+
+.strike-through{
+    text-decoration: line-through;
+}
+
+.first-name, .last-name{
+    width: 33%;
+}
+
+.created-at{
+    width: 26%;
+}
+
+.lock-status{
+    width: 8%;
+    text-align: center;
+}
