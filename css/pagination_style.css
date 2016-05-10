@@ -1,20 +1,12 @@
-.page-button{
-    margin: 10px 5px 10px 5px;
-    padding: 10px 5px 10px 5px;
-}
-
-.page-button-selected{
-    background-color: darkgray;
-    color: black;
-}
-
-
 .page-navigation-bar{
     margin: 10px;
     padding: 5px;
 }
 
-.page-navigation-bar a:hover{
-    background-color: darkgray;
-    color: black;
+.page-navigation-button{
+    margin: 5px;
+}
+
+.page-navigation-button-selected{
+    background-color: darkgoldenrod;
 }

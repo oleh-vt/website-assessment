@@ -1,43 +1,37 @@
 /**
  * Created by Olezhka on 08.05.2016.
  */
-var td;
-var tableRows;
-var pagesAmount;
-var currentPage = 1;
 
-function buildPagination() {
-    td = document.getElementById('main-table');
-    tableRows = td.getElementsByTagName('tr');
-    pagesAmount = Math.ceil(tableRows.length/10);
 
-    var pageNavigationBar = document.createElement('span');
+function paginate() {
+    var currentPage = 0;
+    var recordsPerPage = 10;
+    var table = $('#main-table');
+    var tableRows = $(table).find('tbody tr');
+
+    $(table).bind('repaginate', function(){
+        $(table).find('tbody tr').hide().slice(currentPage * recordsPerPage, (currentPage+1) * recordsPerPage).show();
+    });
+
+    $(table).trigger('repaginate');
+
+    var rowNumber = tableRows.length;
+    var pageNumber = Math.ceil(rowNumber/recordsPerPage);
+    var pageNavigationBar = document.createElement('div');
     $(pageNavigationBar).addClass('page-navigation-bar');
-    for(var i = 0; i < pagesAmount; i++){
-        var a = document.createElement('a');
-        $(a).addClass('page-button');
-        $(a).attr('data-page', i+'');
-        var text = document.createTextNode(""+(i+1));
-        a.appendChild(text);
-        pageNavigationBar.appendChild(a);
+    for(var i = 0; i < pageNumber; i++){
+        var navButton = document.createElement('span');
+        $(navButton).addClass('page-navigation-button');
+        navButton.appendChild(document.createTextNode((i+1)+''));
+        $(navButton).bind('click', {selected: i}, function(event){
+            currentPage = event.data.selected;
+            $(table).trigger('repaginate');
+            $(this).addClass('page-navigation-button-selected').siblings().removeClass('page-navigation-button-selected');
+        });
+        pageNavigationBar.appendChild(navButton);
     }
 
-    $(pageNavigationBar).insertAfter(td);
-}
+    $(pageNavigationBar).insertAfter(table);
 
-function show(page) {
-    if(page == currentPage)
-        return;
-    var startIndex = page - 1;
-    var endIndex = page * 10;
-
-    for(var i = currentPage-1; i < currentPage * 10 && i < pagesAmount.length; i++){
-        var tmp = tableRows[i];
-        $(tmp).hide();
-    }
-    for(var i = startIndex; i < endIndex  && i < pagesAmount.length; i++){
-        var tmp = tableRows[i];
-        $(tmp).show();
-    }
-    currentPage = page;
+    $(pageNavigationBar).find('span.page-navigation-button:first').addClass('page-navigation-button-selected');
 }

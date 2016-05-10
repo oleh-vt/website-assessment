@@ -1,14 +1,15 @@
-$(document).ready(function () {
-    $.getJSON('http://js-assessment-backend.herokuapp.com/users.json', function(data) {
+//$(document).ready(function () {
+function fillTable() {
+    $.getJSON('http://js-assessment-backend.herokuapp.com/users.json', function (data) {
         console.log(data.length);
         var tableBody = $('#table-body');
-        for(var i = 0; i < data.length; i++){
+        for (var i = 0; i < data.length; i++) {
             var row = addTableRow(data[i]);
             $(tableBody).append(row);
         }
-        buildPagination();
+        paginate();
     });
-});
+}
 
 function addTableRow(entryObj) {
     var url = entryObj.url;
@@ -71,19 +72,4 @@ function changeStatus(context){
             }
         }
     });
-}
-
-function changeStatus1(context){
-    var ancestor = $(context).closest('tr');
-    var kids = $(ancestor).children();
-
-    for(var i = 0; i < (kids.length-1); i++){
-        var tmp = kids[i];
-        if(!context.checked){
-            $(tmp).removeClass('strike-through');
-        }
-        else{
-            $(tmp).addClass('strike-through');
-        }
-    }
 }

@@ -52,6 +52,10 @@ a{
     background-color: #666666;
 }
 
+.selected{
+    background-color: #666666;
+}
+
 table{
     width: 100%;
     table-layout: fixed;
