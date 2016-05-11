@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <title>Users</title>
     <script src="scripts/jquery-1.12.3.js"></script>
+    <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/dialog_script.js"></script>
     <script src="scripts/pagination_script.js"></script>
     <script src="scripts/script.js"></script>
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link rel="stylesheet" type="text/css" href="css/pagination_style.css">
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui.css">
 </head>
 <body>
 
 
 <div class="container">
+    <div class="">
+        <button id="new-record-button">Add record</button>
+        <div id = "dialog-new" class="dialog-box" title="New Record">
+            <form action="#" method="post">
+                <label for="last-name" class="label">Last Name</label>
+                <input type="text" id="last-name" value=""/>
+                <br/>
+                <label for="first-name" class="label">First Name</label>
+                <input type="text" id="first-name" value=""/>
+                <br/>
+                <input type="radio" name="status" checked="checked" value="active"/>Active
+                <br/>
+                <input type="radio" name="status" value="locked"/>Locked
+            </form>
+        </div>
+    </div>
     <table id="main-table">
         <thead>
             <tr>

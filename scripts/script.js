@@ -57,7 +57,7 @@ function changeStatus(context){
         url: urlAddress,
         method: 'PUT',
         contentType: 'application/json',
-        data: {'status': lockStatus},
+        data: {status: lockStatus},
         success: function (data) {
             var kids = $(ancestor).children();
 
@@ -70,6 +70,9 @@ function changeStatus(context){
                     $(tmp).addClass('strike-through');
                 }
             }
+        },
+        error: function (data) {
+            console.log('O kurwa!');
         }
     });
 }
