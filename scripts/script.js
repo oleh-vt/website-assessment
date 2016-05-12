@@ -70,21 +70,18 @@ function changeStatus(context){
         method: 'PUT',
         contentType: 'application/json',
         data: {status: lockStatus},
-        success: function (data) {
+        success: function () {
             var kids = $(ancestor).children();
 
             for(var i = 0; i < (kids.length-1); i++){
                 var tmp = kids[i];
-                if(!context.checked){
-                    $(tmp).removeClass('strike-through');
-                }
-                else{
-                    $(tmp).addClass('strike-through');
-                }
+                context.checked ? $(tmp).addClass('strike-through') : $(tmp).removeClass('strike-through');
             }
         },
         error: function (data) {
+            alert('Error :(');
             console.log('O kurwa!');
+            context.checked ? $(context).prop('checked', false) : $(context).prop('checked', false);
         }
     });
 }

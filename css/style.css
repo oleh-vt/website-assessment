@@ -76,24 +76,28 @@ th, td{
     word-wrap:break-word;
 }
 
+td{
+    height: 30px;
+}
+
 .strike-through{
     text-decoration: line-through;
 }
 
 .first-name, .last-name{
-    width: 32%;
+    width: 33%;
 }
 
 .created-at{
-    width: 23%;
+    width: 24%;
+    text-align: center;
 }
 
 .lock-status{
-    width: 8%;
+    width: 7%;
     text-align: center;
 }
 
 .edit-button{
 
 }
-
