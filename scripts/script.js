@@ -12,12 +12,12 @@ function fillTable() {
 }
 
 function addTableRow(entryObj) {
-    var url = entryObj.url;
+    var id = entryObj.id;
     var textData = [entryObj.first_name, entryObj.last_name, entryObj.created_at];
     var isLocked = entryObj.status === 'locked';
 
     var tableRow = document.createElement('tr');
-    $(tableRow).attr('id', url);
+    $(tableRow).attr('id', id);
 
     tableRow = addTextCells(tableRow, textData, isLocked);
 
@@ -35,7 +35,11 @@ function addTableRow(entryObj) {
     var button = document.createElement('button');
     var text = document.createTextNode('Edit');
     button.appendChild(text);
-    $(button).hide();
+
+    $(button).bind('click', editButtonHandler);
+    
+    $(button).addClass('edit-button').hide();
+
     tableCell = document.createElement('td');
     tableCell.appendChild(button);
     tableRow.appendChild(tableCell);
@@ -44,9 +48,10 @@ function addTableRow(entryObj) {
 }
 
 function addTextCells(row, textData, isLocked){
+    var classes = ['first-name', 'last-name', 'created-at'];
     for(var i = 0; i < textData.length; i++) {
         var tableCell = document.createElement('td');
-        $(tableCell).addClass('first-name');
+        $(tableCell).addClass(classes[i]);
         if (isLocked)
             $(tableCell).addClass('strike-through');
         var text = document.createTextNode(textData[i]);
@@ -58,7 +63,7 @@ function addTextCells(row, textData, isLocked){
 
 function changeStatus(context){
     var ancestor = $(context).closest('tr');
-    var urlAddress = $(ancestor).attr('id');
+    var urlAddress = 'http://js-assessment-backend.herokuapp.com/users/' + $(ancestor).attr('id') + '.json';//$(ancestor).attr('id');
     var lockStatus = context.checked ? 'locked' : 'active';
     $.ajax({
         url: urlAddress,
