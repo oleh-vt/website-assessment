@@ -12,7 +12,7 @@ header{
 
 .container{
     margin: 0 auto;
-    width: 800px;
+    width: 900px;
 }
 
 dl{
@@ -35,7 +35,7 @@ a{
 
 .navigation li {
     float: left;
-    width: 200px
+    width: 25%;
 }
 
 .navigation a{
@@ -56,10 +56,13 @@ a{
     background-color: #666666;
 }
 
+colgroup{
+    background-color: lavender;
+}
+
 table{
     width: 100%;
     table-layout: fixed;
-    background-color: lavender;
     border-collapse: collapse;
     margin-top: 30px;
     margin-bottom: 30px;
@@ -78,14 +81,15 @@ th, td{
 }
 
 .first-name, .last-name{
-    width: 33%;
+    width: 32%;
 }
 
 .created-at{
-    width: 26%;
+    width: 23%;
 }
 
 .lock-status{
     width: 8%;
     text-align: center;
 }
+

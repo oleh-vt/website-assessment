@@ -25,12 +25,19 @@ function addTableRow(entryObj) {
     $(tableCell).addClass('lock-status');
     var checkbox = document.createElement('input');
     $(checkbox).attr('type', 'checkbox');
-    //checkbox.type = 'checkbox';
     if(isLocked)
         $(checkbox).attr('checked', 'checked');
     $(checkbox).attr('onchange', 'changeStatus(this)');
 
     tableCell.appendChild(checkbox);
+    tableRow.appendChild(tableCell);
+
+    var button = document.createElement('button');
+    var text = document.createTextNode('Edit');
+    button.appendChild(text);
+    $(button).hide();
+    tableCell = document.createElement('td');
+    tableCell.appendChild(button);
     tableRow.appendChild(tableCell);
 
     return tableRow;

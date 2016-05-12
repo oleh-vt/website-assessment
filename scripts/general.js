@@ -1,7 +1,7 @@
 /**
  * Created by Olezhka on 08.05.2016.
  */
-$(document).ready(function(){
+// $(document).ready(function(){
     $(function () {
         $('nav a').on('click', function (e) {
             e.preventDefault();
@@ -10,6 +10,7 @@ $(document).ready(function(){
             $(this).addClass('selected');
             (function (pageToLoad) {
                 $('#main-content').load(pageToLoad, function () {
+                    $('#table-body').empty();
                     after(pageToLoad);
                 });
             })(page);
@@ -21,4 +22,10 @@ $(document).ready(function(){
             fillTable();
         }
     }
+// });
+
+$(document).on('mouseenter', 'table#main-table tr', function(){
+    $(this).find('button').show();
+}).on('mouseleave', 'table#main-table tr', function(){
+    $(this).find('button').hide();
 });
