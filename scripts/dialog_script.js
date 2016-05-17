@@ -1,87 +1,47 @@
 /**
  * Created by Olezhka on 11.05.2016.
  */
+
 $(document).ready(function () {
-    $('#dialog-new').dialog({
-        autoOpen: false,
-        modal: true,
-        buttons: {
-            OK: function () {
-                $.ajax({
-                    url: 'http://js-assessment-backend.herokuapp.com/users.json',
-                    method: 'POST',
-                    codeType: 'application/json',
-                    data:{
-                        last_name: $('#last-name').val(),
-                        first_name: $('#first-name').val(),
-                        status: $("input[name='status']:checked").val()
-                    },
-                    success: function (data) {
-                        //data.url = 'http://js-assessment-backend.herokuapp.com/users/' + data.id + '.json';
-                        var row = addTableRow(data);
-                        $('#table-body').append(row);
-                        paginate();
-                        $('div.page-navigation-bar').find('span.page-navigation-button:last').trigger('click');
-                        $( this ).dialog( "close" );
-                    },
-                    error: function (data) {
-                        console.log('O kurwa!');
-                    }
-                });
-            },
-            Cancel: function () {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
-
-    $('#dialog-edit').dialog({
-        autoOpen: false,
-        modal: true,
-        buttons: {
-            OK: function () {
-                $.ajax({
-                    url: 'http://js-assessment-backend.herokuapp.com/users/' + $(this).data('row_id') + '.json',
-                    method: 'PUT',
-                    codeType: 'application/json',
-                    data:{
-                        last_name: $('#ln').val(),
-                        first_name: $('#fn').val()
-                    },
-                    success: function (data) {
-
-                        var fn = $('#fn').val();
-                        var ln = $('#ln').val();
-
-                        var trID = $(this).data('row_id');
-                        $(trID).find('td.first-name').html(fn);
-                        $(trID).find('td.last-name').html(ln);
-                        $( this ).dialog( "close" );
-                    },
-                    error: function (data) {
-                        console.log('O kurwa!');
-                    }
-                });
-            },
-            Cancel: function () {
-                $( this ).dialog( "close" );
-            }
-        }
-    });
+    $('#dialog').dialog({autoOpen: false});
 });
 
 
 $('#new-record-button').click(function () {
-    $("#dialog-new").dialog('open');
+    $('#status-block').show();
+    $("#dialog").dialog(newRecDlgInitObj).dialog('open');
 });
 
 function editButtonHandler() {
     var firstName = $(this).closest('tr').find('td.first-name').html();
-    console.log('fName ' +firstName);
     var lastName = $(this).closest('tr').find('td.last-name').html();
-    console.log('lname '+lastName);
-    $('#fn').val(firstName);
-    $('#ln').val(lastName);
+
+    $('#first-name').val(firstName);
+    $('#last-name').val(lastName);
     var trID = $(this).closest('tr').attr('id');
-    $('#dialog-edit').data('row_id', trID).dialog('open');
+
+    $('#status-block').hide();
+    $('#dialog').dialog(editDlgInitObj).data('row_id', trID).dialog('open');
+}
+
+function resetDialogData() {
+    $('#first-name').val("");
+    $('#last-name').val("");
+    $("input[name='status']:first").prop('checked', true);
+
+    $('#first-name-error').contents().remove();
+    $('#last-name-error').contents().remove();
+    $('#status-error').contents().remove();
+}
+
+function handleError(data) {
+    var respObj = JSON.parse(data.responseText);
+    var errMsg = (typeof respObj['first_name'] != 'undefined') ? respObj['first_name'] : "";
+    $('#first-name-error').html(errMsg);
+
+    errMsg = (typeof respObj['last_name'] != 'undefined') ? respObj['last_name'] : "";
+    $('#last-name-error').html(errMsg);
+
+    errMsg = (typeof respObj['status'] != 'undefined') ? respObj['status'] : "";
+    $('#status-error').html(errMsg);
 }

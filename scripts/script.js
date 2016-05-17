@@ -1,7 +1,7 @@
 //$(document).ready(function () {
 function fillTable() {
     $.getJSON('http://js-assessment-backend.herokuapp.com/users.json', function (data) {
-        console.log(data.length);
+        // console.log(data.length);
         var tableBody = $('#table-body');
         for (var i = 0; i < data.length; i++) {
             var row = addTableRow(data[i]);
@@ -68,8 +68,8 @@ function changeStatus(context){
     $.ajax({
         url: urlAddress,
         method: 'PUT',
-        contentType: 'application/json',
-        data: {status: lockStatus},
+        contentType: 'application/x-www-form-urlencoded',
+        data: "user[status]=" + lockStatus,
         success: function () {
             var kids = $(ancestor).children();
 

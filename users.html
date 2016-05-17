@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
     <script src="scripts/jquery-ui.min.js"></script>
+    <script src="scripts/dialog_init_objects.js"></script>
     <script src="scripts/dialog_script.js"></script>
     <script src="scripts/script.js"></script>
     <script src="scripts/pagination_script.js"></script>
@@ -12,33 +13,24 @@
 
 
 <div class="container">
-    <div class="">
-        <div id = "dialog-new" class="dialog-box" title="New Record">
-            <form action="#" method="post">
+        <div id = "dialog" class="dialog-box" title="New Record">
+            <form id="form-dialog" action="#" method="post">
                 <label for="last-name" class="label">Last Name</label>
                 <input type="text" id="last-name" value=""/>
-                <br/>
+                <!--<br/>-->
+                <p id="last-name-error" class="error-message"></p>
                 <label for="first-name" class="label">First Name</label>
                 <input type="text" id="first-name" value=""/>
-                <br/>
+                <p id="first-name-error" class="error-message"></p>
+                <!--<br/>-->
                 <div id="status-block">
                     <input type="radio" name="status" checked="checked" value="active"/>Active
                     <br/>
                     <input type="radio" name="status" value="locked"/>Locked
+                    <p id="status-error" class="error-message"></p>
                 </div>
             </form>
         </div>
-        <div id = "dialog-edit" class="dialog-box" title="Edit">
-            <form action="#" method="put">
-                <label for="ln" class="label">Last Name</label>
-                <input type="text" id="ln" value=""/>
-                <br/>
-                <label for="fn" class="label">First Name</label>
-                <input type="text" id="fn" value=""/>
-                <br/>
-            </form>
-        </div>
-    </div>
     <div style="margin-top: 30px; margin-right: 31px;">
         <button id="new-record-button" style="float: right">Add record</button>
     </div>

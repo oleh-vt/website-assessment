@@ -1,14 +1,13 @@
-/**
- * Created by Olezhka on 08.05.2016.
- */
-
 
 function paginate() {
     var currentPage = 0;
     var recordsPerPage = 10;
     var table = $('#main-table');
-    var tableRows = $(table).find('tbody tr');
 
+    $('div.page-navigation-bar').remove();
+    
+    var tableRows = $(table).find('tbody tr');
+    
     $(table).bind('repaginate', function(){
         $(table).find('tbody tr').hide().slice(currentPage * recordsPerPage, (currentPage+1) * recordsPerPage).show();
     });
