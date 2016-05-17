@@ -34,6 +34,9 @@ var newRecDlgInitObj = {
             resetDialogData();
             $(this).dialog("close");
         }
+    },
+    close: function(){
+        resetDialogData();
     }
 };
 var editDlgInitObj = {
@@ -70,5 +73,8 @@ var editDlgInitObj = {
             resetDialogData();
             $(this).dialog("close");
         }
+    },
+    close: function(){
+        resetDialogData();
     }
 };
